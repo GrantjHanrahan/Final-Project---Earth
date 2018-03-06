@@ -27,6 +27,12 @@
   padding-right: 10%;
 }
 
+#news small{
+  width: auto;
+  font-size: 40%;
+
+}
+
 #searchForm{
   background-color: darkslategrey;
   margin-left: 25vw;
@@ -178,8 +184,6 @@
   <div class="container" id="news">
 
 
-
-
     <!-- <div class="row">
       <div class="col-sm-4">
         <h3>Column 1</h3>
@@ -231,11 +235,21 @@ $('#show').on('click', function(e){
       article = data.articles[i]
       let image = article.urlToImage;
       let title = article.title;
+      let url = article.url;
       console.log(article, image)
       divAppend = '<span id="span'+ i +'" />'
-      let newsResults = $(divAppend).append("<br><img src="+image+"></img><br>");
+      let newsResults = $(divAppend).append("<br><img src="+image+"></img>");
       // $('<small>').html(title).appendTo(divAppend);
       $('#news').append(newsResults);
+
+      $(this.image).each(function() {
+        if(this.url){
+        $(this).wrap("<a href='" + this.url + "'/>");
+        console.log(this.url)
+        } else {
+          console.log('no link')
+        }
+      });
 
       console.log(divAppend)
       // $('#four').append('<div id="div'+ i +'" />');
@@ -364,5 +378,5 @@ function initMap(){
 
 </script>
 <!-- https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/index.html -->
-<script src="https://maps.googleapis.com/maps/api/js?key=APIg&callback=initMap"async defer> //**** Google Maps API ************
+<script src="https://maps.googleapis.com/maps/api/js?key=API&callback=initMap"async defer> //**** Google Maps API ************
 </script>

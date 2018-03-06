@@ -113,6 +113,8 @@
         <h4>Running out of space</h4>
         <p>The waste problem is acute in emerging cities. Landfills such as Laogang in Shanghai, China; Sudokwon in Seoul; the now-full Jardim Gramacho in Rio de Janeiro, Brazil; and Bordo Poniente in Mexico City vie for the title of the world's largest. Each typically receives more than 10,000 tonnes of waste per day. Rapidly developing cities such as Shenzhen in China are adding to the world's 2,000-plus inventory of waste incinerators. With the largest able to process more than 5,000 tonnes per day, concerns over ash disposal, air pollution and costs are rising too.</p>
       </div>
+
+
     </div>
   </div>
 </section>
@@ -246,7 +248,7 @@ function initMap(){
     var t = new Date().getTime();
     var waqiMapOverlay = new google.maps.ImageMapType({
       getTileUrl: function(coord, zoom){
-      return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + "/" + coord.x + "/" +  coord.y + ".png?token=waqi"; //****** WAQI Token ******
+      return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + "/" + coord.x + "/" +  coord.y + ".png?token=TOKEN"; //****** WAQI Token ******
     },
     name: "Air Quality",
   });

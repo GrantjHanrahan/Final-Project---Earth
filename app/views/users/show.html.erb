@@ -312,8 +312,8 @@ $(document).ready(function(){
   on(dom.byId("elevationInput"), "change", updateElevation);
 
   function updateElevation(ev) {//Turn ground layers visibility on/off
-    map.ground.layers.forEach(function(layer) {
-      layer.visible = ev.target.checked;
+    map.ground.layers.forEach(function(layer){
+    layer.visible = ev.target.checked;
     });
   }
 });
@@ -323,8 +323,7 @@ $(document).ready(function(){
 
   });
 
-  // console.log(Map);
-  // console.log(SceneView);
+
 
 </script>
 
@@ -343,7 +342,7 @@ $(document).ready(function(){
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button> -->
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+       <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#one">One</a>
