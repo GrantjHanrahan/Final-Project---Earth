@@ -1,0 +1,359 @@
+<style>
+.jumbotron {
+  background-image: url("https://images.unsplash.com/photo-1501791187590-9ef2612ba1eb?ixlib=rb-0.3.5&s=127c91442355e01e23fee5b39cc9aecc&auto=format&fit=crop&w=1489&q=80");
+  background-position: 0% 13%;
+}
+#one{
+
+}
+
+/* #news{
+  display: inline;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 10%;
+  cursor: pointer;
+} */
+
+#news {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+#news img{
+  height: auto;
+  max-width: 150px;
+  padding-right: 10%;
+}
+/*
+#news span{
+  background-color: lightblue;
+  display: inline-grid;
+  width: 100%;
+} */
+
+#three .container, .row{
+  padding-top: 1%;
+  height:100%;
+}
+
+#threeMap{
+  height: 95%;
+  width: 65%;
+  margin-right: 0;
+}
+
+#two .container, .row{
+  height: 100%;
+  /* width: 75vw; */
+}
+
+#two img{
+  width: 70vw;
+  border: 1px solid white;
+  border-radius: 1%;
+  height: 100%;
+}
+#two .row{
+  margin-left: 10%;
+}
+.results{
+  display: inline-block;
+}
+
+/* #overlay form{
+  margin: 10%;
+}
+
+#overlay, #news{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#news{
+  z-index: 1;
+}  */
+
+</style>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <div class="container">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item"><%= link_to 'Home ', pages_home_path %></li>
+      <li class="nav-item"><%= link_to ' Environment', pages_environment_path %></li>
+      <li class="nav-item"><%= link_to ' Forward', pages_forward_path %></li>
+      <li class="nav-item" id="e"><%= link_to 'Earth', users_show_path %></li>
+    </ul>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#one">One</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#two">Two</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#three">Three</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#four">Four</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="jumbotron text-center">
+  <h1>&lt;/wildlife&gt;</h1>
+</div>
+
+<section class="bg-light" id="one">
+  <!-- <%= image_tag 'breathe.jpg'%> -->
+
+
+  </div>
+</section>
+
+
+<section class="bg-dark" id="two">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <%= image_tag 'ocean-garbage1.png', :class => "seaSlides" %>
+        <%= image_tag 'ocean-plastic.jpg', :class => "seaSlides" %>
+        <%= image_tag 'sealNet.jpg', :class => "seaSlides" %>
+        <%= image_tag 'bird-plastics.jpg', :class => "seaSlides" %>
+        <%= image_tag 'turtle-net.jpg', :class => "seaSlides" %>
+        <%= image_tag 'dolphinPlastic.jpg', :class => "seaSlides" %>
+
+        <!-- <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button> -->
+      </div>
+    </div>
+</div>
+</section>
+
+<section class="bg-light" id="three">
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+      <h4>The Great Pacific Garbage Patch</h4>
+      <p>The Pacific Garbage Patch is an accumulation of plastics, fishing lines, and other marine and land debris that spans HUNDREDS of miles in the middle of the Pacific Ocean. The PGP is the largest, but it’s not the only one– there are actually multiple garbage patches across the Pacific.<br><br>
+
+      <!-- The billions of pounds of trash is dispersed over the open ocean and cannot be dragged in as it contains many types of garbage- including microplastics that have broken down because of saltwater and sun exposure. -->
+    </p>
+    </div>
+    <div class="col-9" id="threeMap">
+
+    </div>
+  </div>
+</div>
+
+  <!-- </div> -->
+</section>
+
+<section class="bg-white" id="four">
+  <!-- <div id="overlay"> -->
+  <button id="show">View</button><br>
+  <input id="query" type="text">
+  <div class="container" id="news">
+
+    <!-- <form> -->
+
+    <!-- <form> -->
+      <!-- <ul> -->
+        <!-- <span id="news"></span> -->
+      <!-- </ul> -->
+
+
+    <!-- <div class="row">
+      <div class="col-sm-4">
+        <h3>Column 1</h3>
+        <p>Lorem ipsum dolor..</p>
+        <p>Ut enim ad..</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Column 2</h3>
+        <p>Lorem ipsum dolor..</p>
+        <p>Ut enim ad..</p>
+      </div>
+      <div class="col-sm-4">
+        <h3>Column 3</h3>
+        <p>Lorem ipsum dolor..</p>
+        <p>Ut enim ad..</p>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+
+<footer class="py-2 bg-dark fixed-bottom">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Grant Hanrahan 2018</p>
+  </div>
+  <!-- /.container -->
+</footer>
+
+<script>
+
+// ---------------- News API --------------------------------
+
+$('#show').on('click', function(e){
+  e.preventDefault();
+  let query = $('#query').val();
+  console.log('clicked');
+  // $('#news').empty();
+
+  $.ajax({
+    url: "https://newsapi.org/v2/everything?q="+query+"&from=2017-01-01&sortBy=popularity&apiKey=APIKEY",
+    data: {
+      q: query
+    }
+  }).done(function(data){
+
+    for(let i = 0; i < data.articles.length; i++){
+      article = data.articles[i]
+      let image = article.urlToImage;
+      let title = article.title;
+      console.log(article, image)
+      divAppend = '<span id="span'+ i +'" />'
+      let newsResults = $(divAppend).append("<br><img src="+image+"></img><br>");
+      // $('<small>').html(title).appendTo(divAppend);
+      $('#news').append(newsResults);
+
+      console.log(divAppend)
+      // $('#four').append('<div id="div'+ i +'" />');
+      // $('<small>').html(article.title).appendTo(id);
+    }
+
+
+    // for(let i = 0; i < data.articles.length; i++){
+    //   article = data.articles[i]
+    //   // console.log({article})
+    //   let image = article.urlToImage;
+    //   let id = `results${i}`
+    //   console.log(id, data)
+    //   $(`<div id=${id}>`).appendTo('#news');
+    //   $('<small>').html(article.title).appendTo(id);
+    //
+    //   $(id).append("<br><img src="+image+"></img><br>");
+    // }
+
+    })
+    //
+    // data.articles.forEach(function(article){
+    //   console.log({article})
+    //   let image = article.urlToImage;
+    //   $('<div>').addClass('results').appendTo('#news');
+    //   $('<small>').html(article.title).appendTo('.results');
+    //
+    //   $('.results').append("<br><img src="+image+"></img><br>");
+    //   })
+  // })
+  .fail(function(err){
+    console.log('failed');
+  });
+}); // #show onClick
+
+// --------------------- CSS SlideShow ----------------------
+// var slideIndex = 1;
+// showDivs(slideIndex);
+//
+// function plusDivs(n) {
+//     showDivs(slideIndex += n);
+// }
+//
+// function showDivs(n) {
+//     var i;
+//     var x = document.getElementsByClassName("seaSlides");
+//     if (n > x.length) {slideIndex = 1}
+//     if (n < 1) {slideIndex = x.length} ;
+//     for (i = 0; i < x.length; i++) {
+//         x[i].style.display = "none";
+//     }
+//     x[slideIndex-1].style.display = "block";
+// }
+
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("seaSlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1}
+    x[slideIndex-1].style.display = "block";
+    setTimeout(carousel, 4000); // Change image every 2 seconds
+}
+
+// ----------------------- Google Map ------------------------
+var oceanGarbage ={
+  pgp: {
+    center: {lat: 31.727, lng: -135},
+    label: 'Eastern Garbage Patch'
+  },
+  wgp:{
+    center: {lat: 25.401, lng: 147},
+    label: 'Western Garbage Patch'
+  }
+}
+
+function initMap(){
+
+  var map = new google.maps.Map(document.getElementById('threeMap'), {
+    center: {lat: 14.623, lng: 179},
+    zoom: 3
+   });
+
+  for (var patch in oceanGarbage){
+  var marker = new google.maps.Circle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    map: map,
+    center: oceanGarbage[patch].center,
+    radius: 500000
+    });
+  }
+
+  var description = "<h4>Convergence Zone</h4>";
+
+  var infowindow = new google.maps.InfoWindow({
+   content: description
+   });
+
+  var convergenceZone = new google.maps.Rectangle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.20,
+    map: map,
+    bounds: new google.maps.LatLngBounds(
+    new google.maps.LatLng(41.389, 167.828),
+    new google.maps.LatLng(35.223, -163.380)
+    )
+  });
+
+  convergenceZone.addListener('click', function() {
+   infowindow.open(map, convergenceZone);
+ });
+
+ };
+
+</script>
+<!-- https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/index.html -->
+<script src="https://maps.googleapis.com/maps/api/js?key=APIKEY=initMap"async defer>
+</script>

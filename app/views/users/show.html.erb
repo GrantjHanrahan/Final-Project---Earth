@@ -1,0 +1,344 @@
+<style>
+  html, body, #viewDiv {
+    padding: 0;
+    margin-top: 1.3%;
+    height: 99%;
+    width: 100%;
+  }
+  #elevationDiv {
+  position: absolute;
+  top: 10%;
+  right: 12px;
+  padding: 7px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid white;
+}
+
+</style>
+<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+<!-- <script src="js/leapcursor-embedded.min.js"></script> -->
+<!-- <script src="/assets/leap-0.6.4.js"></script>
+<script src="/assets/leap-plugins-0.1.6.js"></script> -->
+<!-- <script src="/assets/leapcursor-with-dependencies.min.js?color=#2ECC71&width=500&height=500"></script> -->
+
+<script src="https://js.arcgis.com/4.6/"></script>
+
+
+<script>
+var map;
+var view;
+$(document).ready(function(){
+  // var view = $('#viewDiv')
+  var $view = $('body')
+  // console.log($view)
+  // console.log($view.target)
+  var viewWidth = $view.width();
+  var viewHeight = $view.height();
+  // console.log(viewWidth, viewHeight);
+  var controller = new Leap.Controller();
+  controller.on("frame", function(frame){
+      if(frame.pointables.length > 0){
+          // canvasElement.width = canvasElement.width; //clear
+
+          //Get a pointable and normalize the tip position
+          var pointable = frame.pointables[0];
+          var interactionBox = frame.interactionBox;
+          var normalizedPosition = interactionBox.normalizePoint(pointable.tipPosition, true);
+
+          // Convert the normalized coordinates to span the canvas
+          var canvasX = viewWidth * normalizedPosition[0];
+          var canvasY = viewHeight * (1 - normalizedPosition[1]);
+
+          // view.goTo({
+          //   heading: normalizedPosition[0] * 360
+          // });
+
+        // console.log(frame.hands[0] && frame.hands[0].pitch() * 90)
+
+        //  if(frame.hands[0] && frame.hands[0].pinchStrength > 0.95) {
+        //   console.log(view)
+        //   view.goTo({
+        //    center: [
+        //      -180 + ((1 - normalizedPosition[0]) * 360),
+        //      frame.hands[0].pitch() * 90
+        //    ]
+        //   });
+        // }
+
+        var zoomIncrement = view.zoom + 0.1
+        var zoomStop = view.zoom
+        var zoomOut = view.zoom - 0.1
+        var tiltUp = view.camera.tilt + 0.6
+        var tiltDown = view.camera.tilt - 0.6
+        var tilt = view.camera.tilt
+
+      if(frame.hands[0] && frame.hands[1]){
+      console.log('frame.hands[0]:' + frame.hands[0].pitch())
+      console.log('frame.hands[1]:' + frame.hands[1].pitch())
+      }
+
+      // if(frame.hands[0]){
+      //   console.log(frame.hands[0].yaw())
+      // }
+      // if(frame.hands[0]){
+      //   console.log(frame.hands[0].roll())
+      // }
+      // if(frame.hands[0]){
+      //   console.log(frame.hands[0].pitch())
+      // }
+
+
+        if(frame.hands[0] && frame.hands[0].pinchStrength > 0.3 && frame.hands[1] && frame.hands[1].pinchStrength > 0.3){
+          view.goTo({
+            zoom: zoomIncrement
+          })
+        }
+
+        // if (frame.hands[0] && frame.hands[0].palmNormal && frame.hands[1] && frame.hands[1].pinchStrength == 0) {
+        //   view.goTo({
+        //     zoom: zoomOut
+        //   })
+        // }
+
+        if(frame.hands[0] && frame.hands[0].pinchStrength < 0.1 && frame.hands[1] && frame.hands[1].pinchStrength < 0.1){
+          view.goTo({
+            zoom: zoomOut
+          })
+        }
+
+        if(frame.hands[0] && frame.hands[0].grabStrength === 0 && frame.hands[1] && frame.hands[1].grabStrength === 0){
+          view.goTo({
+            tilt: tiltUp
+          })
+        }
+        if(frame.hands[0] && frame.hands[0].grabStrength === 1 && frame.hands[1] && frame.hands[1].grabStrength === 1){
+          view.goTo({
+            tilt: tiltDown
+          })
+        }
+
+
+        // if(frame.hands[0] && frame.hands[0].pitch() > 0.7){
+        //   view.goTo({
+        //    center: [
+        //      -180 + ((1 - normalizedPosition[0]) * 360)
+        //      // frame.hands[0].pitch() * 90
+        //    ]
+        //   });
+        // }
+        // if(frame.hands[0] && frame.hands[0].pitch() < 0.5){
+        //   view.goTo({
+        //    center: [
+        //      -180 + normalizedPosition[0] * 360
+        //      // frame.hands[0].pitch() * 90
+        //    ]
+        //   });
+        // }
+
+
+
+
+
+        // console.log(view)
+
+
+      // if(frame.hands[1].palmNormal){
+      //     view.goTo({
+      //       zoom: zoomIncrement
+      //     })
+      //   }
+      // if(frame.hands[1].grabStrength < 1){
+      //       view.goTo({
+      //         zoom: zoomStop
+      //       })
+      //     }
+
+
+
+
+
+
+          //we can ignore z for a 2D context
+          // console.log(canvasX, canvasY)
+          // var d = $.Event('mousedown')
+          // d.buttons=[0];
+          // d.button = 0;
+          // d.pageX = canvasX;
+          // d.pageY = canvasY;
+          //
+          // var e = $.Event('mousemove')
+          // e.buttons=[0];
+          // e.button = 0;
+          //
+          // e.pageX = canvasX;
+          // e.pageY = canvasY;
+          // e.clientX = canvasX;
+          // e.clientY = canvasY;
+          // e.offsetX = canvasX;
+          // e.offsetY = canvasY;
+          // $view.trigger(d);
+          //
+          // $view.trigger(e);
+
+
+          // console.log(e)
+          // displayArea.strokeText("(" + canvasX.toFixed(1) + ", " + canvasY.toFixed(1) + ")", canvasX, canvasY);
+      }
+  });
+  controller.connect();
+
+  // $view.on('mousemove', function(e){
+  //   console.log('move', e);
+  // });
+
+});
+
+// var cats = {};
+//
+
+// Leap.loop(function(frame) {
+//
+//   if(frame.hands[0] && frame.hands[0].pinchStrength > 0.8) {
+//     console.log(frame.hands[0].palmPosition);
+
+
+
+  // frame.hands.forEach(function(hand, index) {
+  //   // var cat = ( cats[index] || (cats[index] = new Cat()) );
+  //   // cat.setTransform(hand.screenPosition(), hand.roll());
+  //
+  //
+  //   });
+
+  // });
+      //.use('screenPosition', {scale: 0.25});
+
+// //
+// var Cat = function() {
+//   var cat = this;
+//   var img = document.createElement('img');
+//   img.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/109794/cat_2.png';
+//   img.style.position = 'absolute';
+//   img.onload = function () {
+//     cat.setTransform([window.innerWidth/2,window.innerHeight/2], 0);
+//     document.body.appendChild(img);
+//   }
+//   cat.setTransform = function(position, rotation) {
+//     img.style.left = position[0] - img.width  / 2 + 'px';
+//     img.style.top  = position[1] - img.height / 2 + 'px';
+//     img.style.transform = 'rotate(' + -rotation + 'rad)';
+//     img.style.webkitTransform = img.style.MozTransform = img.style.msTransform =
+//     img.style.OTransform = img.style.transform;
+//   };
+// };
+//   cats[0] = new Cat();
+//   // This allows us to move the cat even whilst in an iFrame.
+//   Leap.loopController.setBackground(true)
+
+// "esri/widgets/BasemapToggle",
+// var toggle = new BasemapToggle({
+//   view: view,
+//   nextBasemap: "hybrid"
+// });
+// view.ui.add(toggle, "top-right");
+
+  require([
+    "esri/Map",
+    "esri/views/SceneView",
+    "esri/widgets/Expand",
+    "esri/widgets/BasemapGallery",
+    "dojo/dom",
+    "dojo/on",
+    "dojo/domReady!"
+  ], function(Map, SceneView,Expand, BasemapGallery){
+
+  map = new Map({
+    basemap: "satellite",
+    ground: "world-elevation",
+  });
+
+  view = new SceneView({
+    container: "viewDiv",//Ref to DOM node that will contain the view
+    map: map, //Ref the map object
+    scale: 80000000, //Sets initial scale to 1:50,000,000
+    center: [-101.17, 21.78] //Sets the center point of view with lon/ lat
+    // camera: {
+    //   tilt: 120
+    // }
+  });
+
+  var basemapGallery = new BasemapGallery({
+    view: view,
+    container: document.createElement("div")
+  });
+
+  var bgExpand = new Expand({
+    view: view,
+    content: basemapGallery.container,
+    expandIconClass: "esri-icon-basemap"
+  });
+
+  view.then(function() {
+  on(dom.byId("elevationInput"), "change", updateElevation);
+
+  function updateElevation(ev) {//Turn ground layers visibility on/off
+    map.ground.layers.forEach(function(layer) {
+      layer.visible = ev.target.checked;
+    });
+  }
+});
+
+  // Add the widget to the top-right corner of the view
+  view.ui.add(bgExpand, "bottom-right");
+
+  });
+
+  // console.log(Map);
+  // console.log(SceneView);
+
+</script>
+
+</head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><%= link_to 'Home ', pages_home_path %></li>
+          <li class="nav-item"><%= link_to ' Environment', pages_environment_path %></li>
+          <li class="nav-item"><%= link_to 'Wildlife', pages_wildlife_path %></li>
+          <li class="nav-item"><%= link_to ' Forward', pages_forward_path %></li>
+
+        </ul>
+        <!-- <a class="navbar-brand js-scroll-trigger" href="#page-top">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#one">One</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#two">Two</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#three">Three</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#four">Four</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div id="viewDiv"></div>
+    <div id="elevationDiv">
+      <label>Elevation:
+        <input id="elevationInput" type="checkbox" checked="yes">
+      </label>
+   </div>
+
+  </body>
+</html>

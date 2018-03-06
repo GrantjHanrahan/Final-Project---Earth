@@ -1,0 +1,287 @@
+<style>
+.jumbotron {
+    background-image: url("https://images.unsplash.com/photo-1486310821147-307d97ead724?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=32d1f6f6c2f3c4ff1873932a4f5db415&auto=format&fit=crop&w=1267&q=80");
+    background-position: 0% 25%;
+}
+
+#four{
+  background-image: url("https://images.unsplash.com/photo-1517065963912-27f75001ebe2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=47fc9ddaa69426ca4112797feb2c168b&auto=format&fit=crop&w=668&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 0% 50%;
+}
+
+#one img, #three img{
+  height: 100%;
+  width: 100%;
+}
+
+/* #two{
+  background-image: url("https://www.planetforward.org/sites/default/files/Pacific-garbage-patch-map_2010_noaamdp_780px.jpg");
+  background-size: 55%;
+  background-repeat: no-repeat;
+} */
+
+/* #five{
+  margin-left: 15%;
+  height: 90%;
+  width: 75%;
+  padding-top: 1%;
+} */
+/* .col-sm-7 img{
+  height: 85%;
+  width: 90%;
+} */
+/* .container-types img{
+  height: 45%;
+  width: 20%;
+  margin-left: 25%;
+} */
+</style>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPHF7zaOaEOiST18ej-Cz0yIdlHmlFw2g&callback=initMap"async defer></script> -->
+<!-- <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+<script src="https://js.arcgis.com/4.6/"></script> -->
+
+<!-- html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <div class="container">
+    <ul class="navbar-nav ml-auto" id="main">
+    <li class="nav-item"><%= link_to 'Home ', pages_home_path %></li>
+    <li class="nav-item"><%= link_to ' Wildlife', pages_wildlife_path %></li>
+    <li class="nav-item"><%= link_to ' Forward', pages_forward_path %></li>
+
+    <li class="nav-item" id="e"><%= link_to 'Earth', users_show_path %></li>
+  </ul>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#one">One</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#two">Two</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#three">Three</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#four">Four</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="jumbotron text-center">
+  <h1>&lt;/environment&gt;</h1>
+</div>
+
+<section id="one">
+  <%= image_tag 'infoG1.jpg'%>
+
+</section>
+
+
+<section class="bg-light" id="two">
+  <div class="container" >
+
+  </div>
+</section>
+
+<section id="three">
+  <%= image_tag 'infoG2.jpg'%>
+</section>
+
+<section class="bg-light" id="four">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h4>Waste</h4>
+        <p>Solid waste — the stuff we send down our chutes, discard at work and put on the curb every week — is a striking by-product of civilization. The average person in the United States throws away their body weight in rubbish every month. When waste management works well, we give it little thought: out of sight and, usually, quickly out of mind. Discarded materials are collected, some are recycled or composted, and most are landfilled or incinerated. But the global view is troubling.</p>
+      </div>
+      <div class="col-sm-4">
+        <h4>Global Trends</h4>
+        <p>In the past century, as the world's population has grown and become more urban and affluent, waste production has risen tenfold. By 2025 it will double again. Rubbish is being generated faster than other environmental pollutants, including greenhouse gases. Plastic clogs the world's oceans and rivers, causing flooding in developing-world cities. Solid-waste management is one of the greatest costs to municipal budgets.</p>
+      </div>
+      <div class="col-sm-4">
+        <h4>Running out of space</h4>
+        <p>The waste problem is acute in emerging cities. Landfills such as Laogang in Shanghai, China; Sudokwon in Seoul; the now-full Jardim Gramacho in Rio de Janeiro, Brazil; and Bordo Poniente in Mexico City vie for the title of the world's largest. Each typically receives more than 10,000 tonnes of waste per day. Rapidly developing cities such as Shenzhen in China are adding to the world's 2,000-plus inventory of waste incinerators. With the largest able to process more than 5,000 tonnes per day, concerns over ash disposal, air pollution and costs are rising too.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="bg-white" >
+  <div class="container" id="five"> -->
+    <!-- <div class="row">
+      <div class="col-sm-7">
+        <%= image_tag 'pgp.jpg'%>
+      </div>
+      <div class="col-sm-5">
+        <h4>The Great Pacific Garbage Patch</h4>
+        <p>The Pacific Garbage Patch is an accumulation of plastics, fishing lines, and other marine and land debris that spans HUNDREDS of miles in the middle of the Pacific Ocean. The PGP is the largest, but it’s not the only one– there are actually multiple garbage patches across the Pacific.<br><br>
+
+        The billions of pounds of trash is dispersed over the open ocean and cannot be dragged in as it contains many types of garbage- including microplastics that have broken down because of saltwater and sun exposure.
+      </p>
+    </div>-->
+  <!-- </div>
+</section> -->
+
+
+
+<footer class="py-2 bg-dark fixed-bottom">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Grant Hanrahan 2018</p>
+  </div>
+</footer>
+
+<script>
+// "esri/layers/FeatureLayer",
+  // require([
+  //   "esri/Map",
+  //   "esri/views/MapView",
+  //   "esri/layers/GraphicsLayer",
+  //   "esri/geometry/Polyline",
+  //   "esri/geometry/Polygon",
+  //   "esri/symbols/SimpleLineSymbol",
+  //   "esri/symbols/SimpleFillSymbol",
+  //   "esri/Graphic",
+  //   "esri/PopupTemplate",
+  //   "dojo/domReady!"
+  // ], function(Map, MapView, GraphicsLayer, Polyline, Polygon, SimpleLineSymbol, SimpleFillSymbol, Graphic, PopupTemplate){
+  //   var map = new Map({
+  //     basemap: "national-geographic"
+  //   });
+  //
+  //   var view = new MapView({
+  //     container: "five",
+  //     map:map,
+  //     zoom:2,
+  //     center: [200, -20]
+  //   });
+  //
+  //   var graphicsLayer = new GraphicsLayer();
+  //   map.add(graphicsLayer);
+  //
+  //   view.on("mouse-wheel", function(evt){// prevents zooming with the mouse-wheel event
+  //     evt.stopPropagation();
+  //   });
+  //
+  //   var polyline = new Polyline({
+  //   paths: [
+  //     [-111.30, 52.68],
+  //     [-98, 49.5],
+  //     [-93.94, 29.89]
+  //     ]
+  //   });
+  //
+  //   var lineSymbol = new SimpleLineSymbol({
+  //   color: [226, 119, 40],  // RGB color values as an array
+  //   width: 4
+  //   });
+  //
+  //   // Create the graphic
+  //   var polylineGraphic = new Graphic({
+  //     geometry: polyline,   // Add the geometry created in step 4
+  //     symbol: lineSymbol,   // Add the symbol created in step 5 // Add the attributes created in step 6
+  //     popupTemplate: new PopupTemplate({
+  //       title: "{Name}",
+  //       content: "{*}"
+  //     })
+  //   });
+  //
+  //   var polygon = new Polygon({
+  //     rings: [
+  //       [-64.78, 32.3],
+  //       [-66.07, 18.45],
+  //       [-80.21, 25.78],
+  //       [-64.78, 32.3]
+  //     ]
+  //   });
+  //
+  //   // Create a symbol for rendering the graphic
+  //   var fillSymbol = new SimpleFillSymbol({
+  //     color: [227, 139, 79, 0.8],
+  //     outline: { // autocasts as new SimpleLineSymbol()
+  //       color: [255, 255, 255],
+  //       width: 1
+  //     }
+  //   });
+  //
+  //   // Add the geometry and symbol to a new graphic
+  //   var polygonGraphic = new Graphic({
+  //     geometry: polygon,
+  //     symbol: fillSymbol
+  //   });
+  //
+  //   // Add the graphics to the view's graphics view
+  // view.then(function() {
+  //   view.graphics.addMany([polylineGraphic, polygonGraphic]);
+  // });
+  //
+  //   // graphicsLayer.add(polylineGraphic);
+  //   // var featureLayer = new FeatureLayer({
+  //   // url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3"
+  //   // });
+  //   // map.add(featureLayer);
+  // });
+var map;
+function initMap(){
+  // map = new google.maps.Map(document.getElementById('four'), {
+  //   center: {lat: -34.397, lng: 150.644},
+  //   zoom: 8
+  // });
+    var map = new google.maps.Map(document.getElementById('two'),{
+      center: {lat: 51.505, lng: -0.09},
+      // center: new google.maps.LatLng(50, 35),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      zoom: 5
+    });
+
+    var t = new Date().getTime();
+    var waqiMapOverlay = new google.maps.ImageMapType({
+      getTileUrl: function(coord, zoom){
+      return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + "/" + coord.x + "/" +  coord.y + ".png?token= TOKEN";
+    },
+    name: "Air Quality",
+  });
+
+  map.overlayMapTypes.insertAt(0,waqiMapOverlay);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=APIKEY=initMap"async defer>
+</script>
+
+<!-- https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/index.html -->
+
+<!-- <div class="row">
+<div class="col-sm-4">
+  <ul>
+    <li>Air pollution: the release of chemicals and particulates into the atmosphere. Common gaseous pollutants include carbon monoxide, sulfur dioxide, chlorofluorocarbons (CFCs) and nitrogen oxides produced by industry and motor vehicles. Photochemical ozone and smog are created as nitrogen oxides and hydrocarbons react to sunlight. Particulate matter, or fine dust is characterized by their micrometre size PM10 to PM2.
+    </li>
+    <li>Light pollution: includes light trespass, over-illumination and astronomical interference.
+    </li>
+  </ul>
+</div>
+<div class="col-sm-4">
+  <ul>
+    <li>Plastic pollution: involves the accumulation of plastic products in the environment that adversely affects wildlife, wildlife habitat, or humans.
+    </li>
+    <li>Noise pollution: which encompasses roadway noise, aircraft noise, industrial noise as well as high-intensity sonar.
+    </li>
+    <li>Soil contamination: occurs when chemicals are released by spill or underground leakage. Among the most significant soil contaminants are hydrocarbons, heavy metals, MTBE, herbicides, pesticides and chlorinated hydrocarbons.
+    </li>
+  </ul>
+</div>
+<div class="col-sm-4">
+  <ul>
+    <li>Radioactive contamination: resulting from nuclear power generation and nuclear weapons research, manufacture and deployment.
+    </li>
+    <li>Water pollution: the discharge of wastewater from commercial and industrial waste into surface waters; discharges of untreated domestic sewage, and chemical contaminants, such as chlorine, from treated sewage; release of waste and contaminants into surface runoff flowing to surface waters (including urban runoff and agricultural runoff, which may contain chemical fertilizers and pesticides); waste disposal and leaching into groundwater; eutrophication and littering.
+    </li>
+  </ul>
+
+</div>
+</div> -->
