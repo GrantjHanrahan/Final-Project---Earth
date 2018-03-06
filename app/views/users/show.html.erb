@@ -87,13 +87,42 @@ $(document).ready(function(){
       // if(frame.hands[0]){
       //   console.log(frame.hands[0].pitch())
       // }
+      // console.log( frame.hands[0].sphereRadius );
 
 
-        if(frame.hands[0] && frame.hands[0].pinchStrength > 0.3 && frame.hands[1] && frame.hands[1].pinchStrength > 0.3){
-          view.goTo({
-            zoom: zoomIncrement
-          })
-        }
+          if(frame.hands[0] && frame.hands[0].pinchStrength > 0.5){
+            let longInc =  -1.0 + ((1.0 - normalizedPosition[0]) * 2.0);
+            let longScale = (frame.hands[0].pinchStrength - 0.5) / 0.5;
+            let zoomScale = 1.0 - (view.zoom - 1.8) / (15.0 - 1.8);
+            if( zoomScale < 0) zoomScale = 0.001;
+
+            let panInc  = (10 * longScale * longInc * zoomScale*zoomScale*zoomScale*zoomScale);
+            view.goTo({
+             center: [
+               view.center.longitude + panInc,
+               view.center.latitude
+             ]
+            });
+          }
+          else if(frame.hands[0] && frame.hands[0].sphereRadius > 0 && frame.hands[0].sphereRadius < 40.0 ) {
+
+            // Zoom overrides pan
+            let zoomInc = -0.5 + ( (1.0 - normalizedPosition[2]) );
+            // console.log( -0.1 + ( 0.2 * (1.0 - normalizedPosition[2]) )  )
+            view.goTo({
+              zoom: view.zoom + zoomInc
+            })
+          }
+
+
+
+
+
+        // if(frame.hands[0] && frame.hands[0].pinchStrength > 0.3 && frame.hands[1] && frame.hands[1].pinchStrength > 0.3){
+        //   view.goTo({
+        //     zoom: zoomIncrement
+        //   })
+        // }
 
         // if (frame.hands[0] && frame.hands[0].palmNormal && frame.hands[1] && frame.hands[1].pinchStrength == 0) {
         //   view.goTo({
@@ -101,11 +130,11 @@ $(document).ready(function(){
         //   })
         // }
 
-        if(frame.hands[0] && frame.hands[0].pinchStrength < 0.1 && frame.hands[1] && frame.hands[1].pinchStrength < 0.1){
-          view.goTo({
-            zoom: zoomOut
-          })
-        }
+        // if(frame.hands[0] && frame.hands[0].pinchStrength < 0.1 && frame.hands[1] && frame.hands[1].pinchStrength < 0.1){
+        //   view.goTo({
+        //     zoom: zoomOut
+        //   })
+        // }
 
         if(frame.hands[0] && frame.hands[0].grabStrength === 0 && frame.hands[1] && frame.hands[1].grabStrength === 0){
           view.goTo({
@@ -262,7 +291,7 @@ $(document).ready(function(){
     container: "viewDiv",//Ref to DOM node that will contain the view
     map: map, //Ref the map object
     scale: 80000000, //Sets initial scale to 1:50,000,000
-    center: [-101.17, 21.78] //Sets the center point of view with lon/ lat
+    center: [86.9250, 27.9878] //Sets the center point of view with lon/ lat
     // camera: {
     //   tilt: 120
     // }

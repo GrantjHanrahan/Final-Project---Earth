@@ -4,16 +4,18 @@
     background-position: 0% 25%;
 }
 
-#four{
+#two{
   background-image: url("https://images.unsplash.com/photo-1517065963912-27f75001ebe2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=47fc9ddaa69426ca4112797feb2c168b&auto=format&fit=crop&w=668&q=80");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 0% 50%;
 }
 
-#one img, #three img{
+#one img{
   height: 100%;
-  width: 100%;
+  width: 99%;
+  margin-left: 0.5%;
+  margin-right: 0.5%;
 }
 
 /* #two{
@@ -78,7 +80,7 @@
 </div>
 
 <section id="one">
-  <%= image_tag 'infoG1.jpg'%>
+  <%= image_tag 'infoWaste.jpg'%>
 
 </section>
 
@@ -90,7 +92,10 @@
 </section>
 
 <section id="three">
-  <%= image_tag 'infoG2.jpg'%>
+  <div class="container" >
+
+  <!-- <%= image_tag 'infoG2.jpg'%> -->
+
 </section>
 
 <section class="bg-light" id="four">
@@ -127,7 +132,6 @@
     </div>-->
   <!-- </div>
 </section> -->
-
 
 
 <footer class="py-2 bg-dark fixed-bottom">
@@ -232,7 +236,7 @@ function initMap(){
   //   center: {lat: -34.397, lng: 150.644},
   //   zoom: 8
   // });
-    var map = new google.maps.Map(document.getElementById('two'),{
+    var map = new google.maps.Map(document.getElementById('three'),{
       center: {lat: 51.505, lng: -0.09},
       // center: new google.maps.LatLng(50, 35),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -242,7 +246,7 @@ function initMap(){
     var t = new Date().getTime();
     var waqiMapOverlay = new google.maps.ImageMapType({
       getTileUrl: function(coord, zoom){
-      return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + "/" + coord.x + "/" +  coord.y + ".png?token= TOKEN";
+      return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + "/" + coord.x + "/" +  coord.y + ".png?token=waqi"; //****** WAQI Token ******
     },
     name: "Air Quality",
   });
@@ -251,7 +255,7 @@ function initMap(){
 }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=APIKEY=initMap"async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=API&callback=initMap"async defer> //******** google maps api key *******
 </script>
 
 <!-- https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/index.html -->

@@ -26,12 +26,16 @@
   max-width: 150px;
   padding-right: 10%;
 }
-/*
-#news span{
-  background-color: lightblue;
-  display: inline-grid;
-  width: 100%;
-} */
+
+#searchForm{
+  background-color: darkslategrey;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  padding: 10px;
+}
+#show{
+  margin-left: 2%;
+}
 
 #three .container, .row{
   padding-top: 1%;
@@ -50,32 +54,22 @@
 }
 
 #two img{
-  width: 70vw;
+  width: 100%;
   border: 1px solid white;
   border-radius: 1%;
   height: 100%;
 }
-#two .row{
-  margin-left: 10%;
+#two .col-2{
+  color: white;
+  margin-top: 10%;
 }
+#two strong{
+  color: red;
+}
+
 .results{
   display: inline-block;
 }
-
-/* #overlay form{
-  margin: 10%;
-}
-
-#overlay, #news{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-#news{
-  z-index: 1;
-}  */
 
 </style>
 
@@ -125,8 +119,11 @@
 <section class="bg-dark" id="two">
   <div class="container">
     <div class="row">
+      <div class="col-2">
+        <h5>By 2050 an estimated <strong>99%</strong> of seabirds will have ingested plastic</h5><small>#CleanSeas UN Environment</small>
+
+      </div>
       <div class="col-lg-8">
-        <%= image_tag 'ocean-garbage1.png', :class => "seaSlides" %>
         <%= image_tag 'ocean-plastic.jpg', :class => "seaSlides" %>
         <%= image_tag 'sealNet.jpg', :class => "seaSlides" %>
         <%= image_tag 'bird-plastics.jpg', :class => "seaSlides" %>
@@ -136,6 +133,10 @@
         <!-- <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
         <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button> -->
       </div>
+      <div class="col-2">
+        <h5>Marine litter harms over <strong>600</strong> marine species</h5><br>
+        <h5><strong>15%</strong> of species affected by ingestion and entanglement from marine litter are endangered</h5>
+    </div>
     </div>
 </div>
 </section>
@@ -161,16 +162,22 @@
 
 <section class="bg-white" id="four">
   <!-- <div id="overlay"> -->
-  <button id="show">View</button><br>
-  <input id="query" type="text">
+
+  <form class="form-inline" id="searchForm">
+  <label class="sr-only" for="inlineFormInput">Search Term:</label>
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="query" placeholder="Ocean">
+
+  <label class="sr-only" for="inlineFormInputGroup">Search for Artices from:</label>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <input type="date" class="form-control" id="date" placeholder="date">
+  </div>
+
+  <button class="btn btn-primary" id="show">Show Articles</button>
+</form>
+
   <div class="container" id="news">
 
-    <!-- <form> -->
 
-    <!-- <form> -->
-      <!-- <ul> -->
-        <!-- <span id="news"></span> -->
-      <!-- </ul> -->
 
 
     <!-- <div class="row">
@@ -207,14 +214,16 @@
 
 $('#show').on('click', function(e){
   e.preventDefault();
-  let query = $('#query').val();
+  let searchTerm = $('#query').val();
+  let searchDate = $('#date').val();
   console.log('clicked');
   // $('#news').empty();
 
   $.ajax({
-    url: "https://newsapi.org/v2/everything?q="+query+"&from=2017-01-01&sortBy=popularity&apiKey=APIKEY",
+    url: "https://newsapi.org/v2/everything?q=pollution&"+searchTerm+"from="+searchDate+"&sortBy=popularity&apiKey=API", //***** News API Key ******
     data: {
-      q: query
+      q: searchTerm,
+      d: searchDate
     }
   }).done(function(data){
 
@@ -355,5 +364,5 @@ function initMap(){
 
 </script>
 <!-- https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/index.html -->
-<script src="https://maps.googleapis.com/maps/api/js?key=APIKEY=initMap"async defer>
+<script src="https://maps.googleapis.com/maps/api/js?key=APIg&callback=initMap"async defer> //**** Google Maps API ************
 </script>
