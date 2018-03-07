@@ -25,6 +25,11 @@
   height: auto;
   max-width: 150px;
   padding-right: 10%;
+  opacity: 1;
+}
+
+#news img:hover{
+  opacity: 0.2;
 }
 
 #news small{
@@ -34,11 +39,16 @@
 }
 
 #searchForm{
-  background-color: darkslategrey;
-  margin-left: 25vw;
-  margin-right: 25vw;
+  background-color: darkgrey;
+  margin-left: 15vw;
+  margin-right: 20vw;
   padding: 10px;
 }
+#searchForm h6{
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
 #show{
   margin-left: 2%;
 }
@@ -79,14 +89,13 @@
 
 </style>
 
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
   <div class="container">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item"><%= link_to 'Home ', pages_home_path %></li>
       <li class="nav-item"><%= link_to ' Environment', pages_environment_path %></li>
-      <li class="nav-item"><%= link_to ' Forward', pages_forward_path %></li>
       <li class="nav-item" id="e"><%= link_to 'Earth', users_show_path %></li>
     </ul>
 
@@ -126,8 +135,11 @@
   <div class="container">
     <div class="row">
       <div class="col-2">
-        <h5>By 2050 an estimated <strong>99%</strong> of seabirds will have ingested plastic</h5><small>#CleanSeas UN Environment</small>
-
+        <h5>By 2050 an estimated <strong>99%</strong> of seabirds will have ingested plastic</h5>
+        <!-- <small>#CleanSeas UN Environment</small> -->
+        <br>
+        <h5>Every year <strong>8 Million metric tons</strong> of plastic goes into the ocean</h5>
+        <!-- <small>Ocean Conservancy</small> -->
       </div>
       <div class="col-lg-8">
         <%= image_tag 'ocean-plastic.jpg', :class => "seaSlides" %>
@@ -136,8 +148,6 @@
         <%= image_tag 'turtle-net.jpg', :class => "seaSlides" %>
         <%= image_tag 'dolphinPlastic.jpg', :class => "seaSlides" %>
 
-        <!-- <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button> -->
       </div>
       <div class="col-2">
         <h5>Marine litter harms over <strong>600</strong> marine species</h5><br>
@@ -170,15 +180,15 @@
   <!-- <div id="overlay"> -->
 
   <form class="form-inline" id="searchForm">
-  <label class="sr-only" for="inlineFormInput">Search Term:</label>
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="query" placeholder="Ocean">
+  <!-- <label class="sr-only" for="inlineFormInput">Search Term:</label> -->
+  <h6>Search: </h6><input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="query" placeholder="Ocean">
 
-  <label class="sr-only" for="inlineFormInputGroup">Search for Artices from:</label>
-  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-    <input type="date" class="form-control" id="date" placeholder="date">
-  </div>
+  <!-- <label class="sr-only" for="inlineFormInputGroup">Search for Artices from:</label> -->
+  <!-- <div class="input-group mb-2 mr-sm-2 mb-sm-0"> -->
+    <h6>Date: </h6><input type="date" class="form-control" id="date" placeholder="date">
+  <!-- </div> -->
 
-  <button class="btn btn-primary" id="show">Show Articles</button>
+  <button class="btn btn-dark" id="show">Show Related News Articles</button>
 </form>
 
   <div class="container" id="news">
@@ -238,18 +248,20 @@ $('#show').on('click', function(e){
       let url = article.url;
       console.log(article, image)
       divAppend = '<span id="span'+ i +'" />'
-      let newsResults = $(divAppend).append("<br><img src="+image+"></img>");
-      // $('<small>').html(title).appendTo(divAppend);
-      $('#news').append(newsResults);
+      let $newsResults = $(divAppend).append("<br><img class=articleImage src="+image+"></img>").attr('href', url);
+      // let $newsResults = $(divAppend).append("<br><a href="+url+"><img src="+image+"></img></a");
+      // let $newsResults = $(divAppend).append("<br><a href="+url+"><img src="+image+"></img></a>");
+      $newsResults.on('click', function(){
+        window.open(url, '_blank')
+      })
 
-      $(this.image).each(function() {
-        if(this.url){
-        $(this).wrap("<a href='" + this.url + "'/>");
-        console.log(this.url)
-        } else {
-          console.log('no link')
-        }
-      });
+      $newsResults.on('hover', function(){
+        console.log('image hover')
+      })
+
+      // $('#news').append("<a href="+url+">View Image</a>");
+      // $('<small>').html(title).appendTo(divAppend);
+      $('#news').append($newsResults);
 
       console.log(divAppend)
       // $('#four').append('<div id="div'+ i +'" />');

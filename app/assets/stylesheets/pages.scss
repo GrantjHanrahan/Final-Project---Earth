@@ -2,6 +2,160 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body, html {
+    height: 100%;
+}
+
+.parallax{
+    /* The image used */
+    // background-image: url("https://images.unsplash.com/photo-1486310821147-307d97ead724?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=32d1f6f6c2f3c4ff1873932a4f5db415&auto=format&fit=crop&w=1267&q=80");
+
+    background-image: url('https://images.unsplash.com/photo-1517065963912-27f75001ebe2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=47fc9ddaa69426ca4112797feb2c168b&auto=format&fit=crop&w=668&q=80');
+
+    /* Full height */
+    height: 600%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+    #one img{
+      height: 100%;
+      width: 99%;
+      margin-left: 0.5%;
+      margin-right: 0.5%;
+    }
+
+    section .container, .row{
+      width: 100%;
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+
+    }
+    .container{
+      margin-left: 5% !important;
+      margin-right: 5% !important;
+    }
+
+    // .section{
+    //   min-height: 40vh;
+    //   height: 80vh;
+    //   border-bottom: 3px inset whitesmoke;
+    //   -webkit-box-shadow:0px 1px 1px #de1dde;
+    //   -moz-box-shadow:0px 1px 1px #de1dde;
+    //   box-shadow:0px 1px 1px #de1dde;
+    //   margin-bottom: 2%;
+    //   margin-top: 2%;
+    // }
+
+// .parallax2 {
+//     /* The image used */
+//     background-image: url('https://images.unsplash.com/photo-1501791187590-9ef2612ba1eb?ixlib=rb-0.3.5&s=127c91442355e01e23fee5b39cc9aecc&auto=format&fit=crop&w=1489&q=80');
+//
+//     /* Full height */
+//     height: 50%;
+//
+//     /* Create the parallax scrolling effect */
+//     background-attachment: fixed;
+//     background-position: 5% 20%;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//   }
+
+    #news {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #news img{
+      height: auto;
+      max-width: 150px;
+      padding-right: 10%;
+      opacity: 1;
+    }
+
+    #news img:hover{
+      opacity: 0.2;
+    }
+
+    #news small{
+      width: auto;
+      font-size: 40%;
+    }
+
+    #searchForm{
+      background-color: darkgrey;
+      margin-left: 15vw;
+      margin-right: 20vw;
+      padding: 10px;
+    }
+    #searchForm h6{
+      margin-left: 1%;
+      margin-right: 1%;
+    }
+
+    #show{
+      margin-left: 2%;
+    }
+
+    #pacificGB .container, .row{
+      padding-top: 1%;
+      height:100%;
+      background-color: inherit;
+    }
+
+    #pacificGB p{
+      font-size: 120%;
+      font-weight: 500;
+      margin-top: 10%;
+    }
+
+    #pgpMap img{
+      height: auto;
+      width: 90%;
+      margin-left: 20%;
+    }
+
+    // #pgpMap{ // ------ google map 2
+    //   height: 95%;
+    //   width: 65%;
+    //   margin-right: 0;
+    // }
+
+    #seaStats .container, .row{
+       height: 100%;
+       width: 100%;
+    }
+
+    #seaSlides img{
+      width: 100%;
+      border: 1px solid white;
+      border-radius: 1%;
+      height: 70vh;
+      // margin-left: 5%;
+      margin-right: 5%;
+
+    }
+
+    #seaStats .col-2{
+      color: white;
+      margin-top: 5%;
+    }
+    #seaStats strong{
+      color: red;
+    }
+
+    .smallSect{
+      margin-top: 5vh;
+      margin-bottom: 5vh;
+      height: 5%;
+      background-color: lightgrey;
+    }
+
+
+
 #logo{
   margin-top: 40vh;
   margin-bottom: 40vh;
@@ -9,20 +163,23 @@
   font-size: 12vh;
   font-weight: bold;
 }
-body{
-   background: url("https://images.unsplash.com/photo-1451847251646-8a6c0dd1510c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b087e70d55ab588d32bf982c2f281e2f&auto=format&fit=crop&w=1489&q=80")
-   no-repeat center left fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
-}
+// body{
+//    background: url("https://images.unsplash.com/photo-1451847251646-8a6c0dd1510c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=b087e70d55ab588d32bf982c2f281e2f&auto=format&fit=crop&w=1489&q=80")
+//    no-repeat center left fixed;
+//    -webkit-background-size: cover;
+//    -moz-background-size: cover;
+//    -o-background-size: cover;
+//    background-size: cover;
+// }
 
 .jumbotron{
   margin-bottom: 0px !important;
   background-size: 100%;
   background-repeat: no-repeat;
   color: white;
+  background-color: inherit !important;
+   // url("https://images.unsplash.com/photo-1486310821147-307d97ead724?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=32d1f6f6c2f3c4ff1873932a4f5db415&auto=format&fit=crop&w=1267&q=80");
+  background-position: 0% 25%;
 }
 
 .jumbotron h1{
@@ -33,19 +190,9 @@ body{
 .jumbotron, section{
   min-height: 40vh;
   height: 80vh;
-  border-bottom: 3px inset whitesmoke;
-  // -webkit-box-shadow:0px 1px 1px #de1dde;
-  // -moz-box-shadow:0px 1px 1px #de1dde;
-  // box-shadow:0px 1px 1px #de1dde;
-  // border-bottom: 3px inline whitesmoke;
-}
-.row{
-  padding-top: 5%;
+
 }
 
-p{
-  // font-size: 90% !important;
-}
 h4{
   padding-bottom: 2%;
 }
@@ -53,8 +200,3 @@ h1 a:hover{
   text-decoration: none;
   color: white;
 }
-
-
-// .container{
-//   margin-top: 0, auto;
-// }

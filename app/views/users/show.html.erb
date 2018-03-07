@@ -73,6 +73,7 @@ $(document).ready(function(){
         var tiltDown = view.camera.tilt - 0.6
         var tilt = view.camera.tilt
 
+
       if(frame.hands[0] && frame.hands[1]){
       console.log('frame.hands[0]:' + frame.hands[0].pitch())
       console.log('frame.hands[1]:' + frame.hands[1].pitch())
@@ -82,10 +83,21 @@ $(document).ready(function(){
       //   console.log(frame.hands[0].yaw())
       // }
       // if(frame.hands[0]){
-      //   console.log(frame.hands[0].roll())
+      //   console.log(frame.hands[0].sphereCenter)
       // }
+      // var pitch0 = frame.hands[0].pitch();
+      // var pitch1 = frame.hands[1].pitch();
+
+      // var type = frame.hands[0].type;
+      // if(type == "left"){
+      //     console.log("Left hand.");
+      // } else {
+      //     console.log("Right hand.")
+      // }
+
+
       // if(frame.hands[0]){
-      //   console.log(frame.hands[0].pitch())
+      //   console.log(pitch)
       // }
       // console.log( frame.hands[0].sphereRadius );
 
@@ -104,13 +116,46 @@ $(document).ready(function(){
              ]
             });
           }
+          else if(frame.hands[1] && frame.hands[1].pinchStrength > 0.5){
+            let latInc =  -1.0 + ((1.0 - normalizedPosition[0]) * 2.0);
+            let latScale = (frame.hands[0].pinchStrength - 0.5) / 0.5;
+            let zoomScale1 = 1.0 - (view.zoom - 1.8) / (15.0 - 1.8);
+            if( zoomScale1 < 0) zoomScale1 = 0.001;
+
+            let upInc  = (10 * latScale * latInc * zoomScale1*zoomScale1*zoomScale1*zoomScale1);
+            view.goTo({
+             center: [
+               view.center.latitude + upInc,
+               view.center.longitude
+             ]
+            });
+          }
+
+
           else if(frame.hands[0] && frame.hands[0].sphereRadius > 0 && frame.hands[0].sphereRadius < 40.0 ) {
 
             // Zoom overrides pan
             let zoomInc = -0.5 + ( (1.0 - normalizedPosition[2]) );
+            // console.log('zoom inc' + zoomInc)
+
             // console.log( -0.1 + ( 0.2 * (1.0 - normalizedPosition[2]) )  )
             view.goTo({
               zoom: view.zoom + zoomInc
+            })
+            // console.log('view zoom' + view.zoom)
+
+          }
+
+          if(frame.hands[0] && frame.hands[0].confidence > 0.5 && frame.hands[1] && frame.hands[1].confidence > 0.5){
+            console.log(frame.hands[0].confidence)
+
+            view.goTo({
+              tilt: tiltUp
+            })
+          }
+          if(frame.hands[0] && frame.hands[0].pitch < 0 && frame.hands[1] && frame.hands[1].pitch < 0){
+            view.goTo({
+              tilt: tiltDown
             })
           }
 
@@ -136,16 +181,16 @@ $(document).ready(function(){
         //   })
         // }
 
-        if(frame.hands[0] && frame.hands[0].grabStrength === 0 && frame.hands[1] && frame.hands[1].grabStrength === 0){
-          view.goTo({
-            tilt: tiltUp
-          })
-        }
-        if(frame.hands[0] && frame.hands[0].grabStrength === 1 && frame.hands[1] && frame.hands[1].grabStrength === 1){
-          view.goTo({
-            tilt: tiltDown
-          })
-        }
+        // if(frame.hands[0] && frame.hands[0].grabStrength === 0 && frame.hands[1] && frame.hands[1].grabStrength === 0){
+        //   view.goTo({
+        //     tilt: tiltUp
+        //   })
+        // }
+        // if(frame.hands[0] && frame.hands[0].grabStrength === 1 && frame.hands[1] && frame.hands[1].grabStrength === 1){
+        //   view.goTo({
+        //     tilt: tiltDown
+        //   })
+        // }
 
 
         // if(frame.hands[0] && frame.hands[0].pitch() > 0.7){
@@ -277,10 +322,11 @@ $(document).ready(function(){
     "esri/views/SceneView",
     "esri/widgets/Expand",
     "esri/widgets/BasemapGallery",
+    "esri/layers/TileLayer",
     "dojo/dom",
     "dojo/on",
     "dojo/domReady!"
-  ], function(Map, SceneView,Expand, BasemapGallery){
+  ], function(Map, SceneView,Expand, BasemapGallery, TileLayer){
 
   map = new Map({
     basemap: "satellite",
@@ -292,6 +338,7 @@ $(document).ready(function(){
     map: map, //Ref the map object
     scale: 80000000, //Sets initial scale to 1:50,000,000
     center: [86.9250, 27.9878] //Sets the center point of view with lon/ lat
+    // layers: [tileLayer]
     // camera: {
     //   tilt: 120
     // }
@@ -308,6 +355,21 @@ $(document).ready(function(){
     expandIconClass: "esri-icon-basemap"
   });
 
+  var tileLayer = new TileLayer({
+  url: "https://new.nowcoast.noaa.gov/arcgis/rest/services/nowcoast/analysis_ocean_sfc_sst_time/MapServer/6"
+  });
+  console.log(tileLayer)
+
+  // "https://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/GICores03_05_All_Cores/MapServer?cacheKey=8e747fa8cb2b3715"// This layer represents modeled Intact Habitat Cores, or minimally disturbed natural areas at least 100 acres in size and greater than 200 meters wide
+
+//https://server.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer *** Base Map
+
+// http://www.arcgis.com/home/webmap/viewer.html?url=https%3A%2F%2Fserver.arcgisonline.com%2Farcgis%2Frest%2Fservices%2FSpecialty%2FSoil_Survey_Map%2FMapServer&source=sd *****soil
+
+// https://server.arcgisonline.com/arcgis/rest/services/Specialty/DeLorme_World_Base_Map/MapServer ***DeLorme
+
+
+
   view.then(function() {
   on(dom.byId("elevationInput"), "change", updateElevation);
 
@@ -317,7 +379,7 @@ $(document).ready(function(){
     });
   }
 });
-
+  map.add(tileLayer)
   // Add the widget to the top-right corner of the view
   view.ui.add(bgExpand, "bottom-right");
 

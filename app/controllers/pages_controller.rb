@@ -8,6 +8,6 @@ class PagesController < ApplicationController
   def wildlife
   end
 
-  def forward
+  def waste
   end
 end
