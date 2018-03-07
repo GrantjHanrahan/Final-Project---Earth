@@ -78,6 +78,7 @@ body, html {
 
     #news img:hover{
       opacity: 0.2;
+      transform: scale(1.3);
     }
 
     #news small{
@@ -154,6 +155,11 @@ body, html {
       background-color: lightgrey;
     }
 
+    iframe{
+      height: 100px;
+      width: 200px;
+      border: 1px solid black;
+    }
 
 
 #logo{
