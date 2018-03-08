@@ -5,25 +5,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
   <div class="container">
     <ul class="navbar-nav ml-auto" id="main">
-    <li class="nav-item"><%= link_to 'Home ', pages_home_path %></li>
+    <li class="nav-item"><%= link_to 'Home  |', pages_home_path %></li>
     <!-- <li class="nav-item"><%= link_to ' Wildlife', pages_wildlife_path %></li> -->
 
-    <li class="nav-item" id="e"><%= link_to 'Earth', users_show_path %></li>
+    <li class="nav-item" id="e"><%= link_to ' Earth', users_show_path %></li>
   </ul>
+  <!-- id="navbarResponsive" -->
 
-    <div class="collapse navbar-collapse" id="navbarResponsive">
+    <div class="collapse navbar-collapse" id="secNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#one">One</a>
+          <a class="nav-link js-scroll-trigger" href="#one">Waste</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#airQualityMap">AQI</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#two">Two</a>
+          <a class="nav-link js-scroll-trigger" href="#oceanTemp">Sea Temp</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#three">Three</a>
+          <a class="nav-link js-scroll-trigger" href="#seaStats">Sealife</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#four">Four</a>
+          <a class="nav-link js-scroll-trigger" href="#pacificGB">PGP</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#pollutionNews">News</a>
         </li>
       </ul>
     </div>
@@ -36,17 +44,30 @@
     <h1>&lt;/waste&gt;</h1>
   </div>
 
-  <section class="smallSect" id="facts1">
-
-
-
-  </section>
-
   <section class="container" id="one">
     <%= image_tag 'infoWaste.jpg'%>
 
   </section>
 
+  <section class="smallSect" id="facts2">
+    <div class="row" id="sadFacts">
+      <div class="col-3">
+        <h5>Carbon dioxide, a greenhouse gas, is the main pollutant that is warming Earth.</h5>
+      </div>
+      <div class="col-3">
+        <h5>Carbon dioxide is emitted from human activities that involve the burning of fossil fuels such as gasoline and natural gas.</h5>
+      </div>
+      <div class="col-3">
+        <h5>In the past 150 years, enough carbon dioxide has been pumped into the atmosphere to raise its levels higher than they have been for hundreds of thousands of years.</h5>
+      </div>
+        <!-- <div class="col-2">
+        <h5>The below information was recorded by the Hybrid Coordinate Ocean Model <strong>2014/04/07 - 2014/06/29</strong></h5>
+      </div> -->
+
+    </div>
+
+
+  </section>
 
   <section id="airQualityMap">
     <div class="container">
@@ -54,7 +75,21 @@
   </section>
 
   <section class="smallSect" id="facts2">
+    <div class="row" id="sadFacts">
+      <div class="col-2">
+        <h5>Global warming caused by human activities has raised the average global temperature by about 1°F (0.6°C) over the past century.</h5>
+      </div>
+      <div class="col-2">
+        <h5> In the oceans, this change has been about <strong>0.18°F (0.1°C).</strong></h5>
+      </div>
+      <div class="col-2">
+        <h5>This warming has occurred from the surface to a depth of about 2,300 feet (700 meters)</h5>
+      </div>
+        <div class="col-2">
+        <h5>The below information was recorded by the Hybrid Coordinate Ocean Model <strong>2014/04/07 - 2014/06/29</strong></h5>
+      </div>
 
+    </div>
 
   </section>
 
@@ -64,19 +99,37 @@
     </div> -->
   </section>
 
+  <section class="smallSect" id="facts3">
+    <div class="row" id="sadFacts">
+      <div class="col-2">
+        <h5>By 2050 an estimated <strong>99%</strong> of seabirds will have ingested plastic</h5>
+        <!-- <small>#CleanSeas UN Environment</small> -->
+      </div>
+      <div class="col-2">
+        <h5>Every year <strong>8 Million metric tons</strong> of plastic goes into the ocean</h5>
+      </div>
+      <div class="col-2">
+        <h5>Marine litter harms over <strong>600</strong> marine species</h5>
+      </div>
+        <div class="col-2">
+        <h5><strong>15%</strong> of species affected by ingestion and entanglement from marine litter are endangered</h5>
+      </div>
 
+    </div>
 
-  <section class="bg-dark" id="seaStats">
+  </section>
+
+  <section id="seaStats">
     <div class="container">
       <div class="row">
-        <div class="col-2">
-          <h5>By 2050 an estimated <strong>99%</strong> of seabirds will have ingested plastic</h5>
-          <!-- <small>#CleanSeas UN Environment</small> -->
+        <div class="col-1">
+          <!-- <h5>By 2050 an estimated <strong>99%</strong> of seabirds will have ingested plastic</h5>
+          <small>#CleanSeas UN Environment</small>
           <br>
           <h5>Every year <strong>8 Million metric tons</strong> of plastic goes into the ocean</h5>
-          <!-- <small>Ocean Conservancy</small> -->
+          <small>Ocean Conservancy</small> -->
         </div>
-        <div class="col-lg-8" id="seaSlides">
+        <div class="col-lg-10" id="seaSlides">
           <%= image_tag 'ocean-plastic.jpg', :class => "seaSlides" %>
           <%= image_tag 'sealNet.jpg', :class => "seaSlides" %>
           <%= image_tag 'bird-plastics.jpg', :class => "seaSlides" %>
@@ -84,20 +137,15 @@
           <%= image_tag 'dolphinPlastic.jpg', :class => "seaSlides" %>
 
         </div>
-        <div class="col-2">
-          <h5>Marine litter harms over <strong>600</strong> marine species</h5><br>
-          <h5><strong>15%</strong> of species affected by ingestion and entanglement from marine litter are endangered</h5>
+        <div class="col-1">
+          <!-- <h5>Marine litter harms over <strong>600</strong> marine species</h5><br>
+          <h5><strong>15%</strong> of species affected by ingestion and entanglement from marine litter are endangered</h5> -->
       </div>
       </div>
   </div>
   </section>
 
-  <section class="smallSect" id="facts3">
-
-
-  </section>
-
-  <section id="pacificGB">
+  <section class="bg-dark" id="pacificGB">
     <div class="container">
       <div class="row">
         <div class="col-4">

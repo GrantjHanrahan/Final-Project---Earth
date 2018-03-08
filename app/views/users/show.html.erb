@@ -52,11 +52,9 @@ $(document).ready(function(){
     // var tiltDown = view.camera.tilt - 0.6
     // var tilt = view.camera.tilt
 
-
     if(frame.hands.length === 2){//---- if there are 2 hands used
       // console.log(frame.hands[0].palmPosition)
       // console.log(frame.hands[1].palmPosition)
-
       let zoom = view.zoom
       let zoomIn = frame.hands[0].pinchStrength + 0.3
       // console.log(zoomIn)
@@ -70,9 +68,7 @@ $(document).ready(function(){
             zoom: zoom - 0.4
           })
         }
-
         // console.log(frame.hands[0].direction[0] + 0.5)
-
     }
     // let center = view.center
     // let latitude = view.center.latitude
@@ -198,10 +194,10 @@ var bgExpand = new Expand({
   expandIconClass: "esri-icon-basemap"
 });
 
-var tileLayer = new TileLayer({
-url: "https://tiles.arcgis.com/tiles/nGt4QxSblgDfeJn9/arcgis/rest/services/GICores03_05_All_Cores/MapServer?cacheKey=8e747fa8cb2b3715"
-});
-console.log(tileLayer)
+// var tileLayer = new TileLayer({
+// url: ""
+// });
+// console.log(tileLayer)
 
 
 view.then(function() {
@@ -214,7 +210,7 @@ function updateElevation(ev){//Turn ground layers visibility on/off
 }
 
 });
-map.add(tileLayer)
+// map.add(tileLayer)
 // Add the widget to the top-right corner of the view
 view.ui.add(bgExpand, "bottom-right");
 });
@@ -227,7 +223,7 @@ view.ui.add(bgExpand, "bottom-right");
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><%= link_to 'Home ', pages_home_path %></li>
+        <li class="nav-item"><%= link_to 'Home  |', pages_home_path %></li>
         <!-- <li class="nav-item"><%= link_to ' Environment', pages_environment_path %></li>
         <li class="nav-item"><%= link_to 'Wildlife', pages_wildlife_path %></li> -->
         <li class="nav-item"><%= link_to ' Waste', pages_waste_path %></li>

@@ -17,7 +17,8 @@ h1{
   font-family: 'Roboto', sans-serif;
 }
 #mainNav li{
-  margin-right: 10%;
+  /* margin-right: 2%; */
   font-size: 1.2em;
   font-weight: 700;
+  padding-right: 2%;
 }
