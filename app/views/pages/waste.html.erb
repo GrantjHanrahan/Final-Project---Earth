@@ -1,8 +1,12 @@
+
+<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+<script src="https://js.arcgis.com/4.6/"></script>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
   <div class="container">
     <ul class="navbar-nav ml-auto" id="main">
     <li class="nav-item"><%= link_to 'Home ', pages_home_path %></li>
-    <li class="nav-item"><%= link_to ' Wildlife', pages_wildlife_path %></li>
+    <!-- <li class="nav-item"><%= link_to ' Wildlife', pages_wildlife_path %></li> -->
 
     <li class="nav-item" id="e"><%= link_to 'Earth', users_show_path %></li>
   </ul>
@@ -33,7 +37,7 @@
   </div>
 
   <section class="smallSect" id="facts1">
-    <iframe src="https://www.theworldcounts.com/counters/shocking_environmental_facts_and_statistics/world_waste_facts/embed?background_color=white&color=black&font_family=%22Helvetica+Neue%22%2C+Arial%2C+sans-serif&font_size=14&token=2d51b7c99802e5593ab15216aae86069dc2a1c28"></iframe>
+
 
 
   </section>
@@ -43,15 +47,21 @@
 
   </section>
 
+
+  <section id="airQualityMap">
+    <div class="container">
+    </div>
+  </section>
+
   <section class="smallSect" id="facts2">
 
 
   </section>
 
+  <section id="oceanTemp">
+    <!-- <div class="container">
 
-  <section id="airQualityMap">
-    <div class="container">
-    </div>
+    </div> -->
   </section>
 
 
@@ -159,6 +169,28 @@
 
    map.overlayMapTypes.insertAt(0,waqiMapOverlay);
  }
+
+// --------------------- ESRI Ocean Temp -----------------------------
+
+require([
+  "esri/Map",
+  "esri/views/MapView",
+  "dojo/domReady!"
+], function(Map, MapView){
+  var map = new Map({
+    basemap: "streets"
+  });
+  var view = new MapView({
+    container: "oceanTemp",  // Reference to the scene div created in step 5
+    map: map,  // Reference to the map object created before the scene
+    zoom: 4,  // Sets zoom level based on level of detail (LOD)
+    center: [15, 65]  // Sets center point of view using longitude,latitude
+  });
+});
+
+
+
+
 // ---------------- News API ------------------------------------------
 
 $('#show').on('click', function(e){
