@@ -1,3 +1,4 @@
+
 <style>
   html, body, #viewDiv {
     padding: 0;
@@ -14,10 +15,9 @@
   color: white;
   border: 1px solid white;
 }
-
 </style>
-<link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
-<script src="https://js.arcgis.com/4.6/"></script>
+
+
 
 <script>
 
@@ -26,35 +26,24 @@ var view;
 
 $(document).ready(function(){
 
+
 //-------------------------- Leap & ArcGis control variables -----------
   var zoomGestureDistLast = 0;
   var $view = $('body')
   var viewWidth = $view.width();
   var viewHeight = $view.height();
 
-  var controller = new Leap.Controller();
 
-  controller.on("frame", function(frame){
+var controller = new Leap.Controller()
+.use('riggedHand')
+.on("frame", function(frame){
 
     //Get a pointable and normalize the tip position
     var pointable = frame.pointables[0];
     var interactionBox = frame.interactionBox;
-    // var normalizedPosition = interactionBox.normalizePoint(pointable.tipPosition, true);
-    //
-    // // Convert the normalized coordinates to span the canvas
-    // var canvasX = viewWidth * normalizedPosition[0];
-    // var canvasY = viewHeight * (1 - normalizedPosition[1]);
-
-    // var zoomIncrement = view.zoom + 0.1
-    // var zoomStop = view.zoom
-    // var zoomOut = view.zoom - 0.1
-    // var tiltUp = view.camera.tilt + 0.6
-    // var tiltDown = view.camera.tilt - 0.6
-    // var tilt = view.camera.tilt
 
     if(frame.hands.length === 2){//---- if there are 2 hands used
       // console.log(frame.hands[0].palmPosition)
-      // console.log(frame.hands[1].palmPosition)
       let zoom = view.zoom
       let zoomIn = frame.hands[0].pinchStrength + 0.3
       // console.log(zoomIn)
@@ -70,10 +59,6 @@ $(document).ready(function(){
         }
         // console.log(frame.hands[0].direction[0] + 0.5)
     }
-    // let center = view.center
-    // let latitude = view.center.latitude
-    // let longitude = view.center.longitude
-
 
     else if(frame.hands.length === 1){ //---- if there is 1 hand used
 
@@ -92,19 +77,16 @@ $(document).ready(function(){
         if( zoomScale < 0) zoomScale = 0.001;
 
         let panRight = frame.hands[0].direction[0] + 0.5
-        console.log(panRight)
+        // console.log(panRight)
 
         let panInc = (5 * panRight * longInc * zoomScale*zoomScale*zoomScale*zoomScale);
         let panDec = (10 * panRight * longDec * zoomScale*zoomScale*zoomScale*zoomScale);
-        // let upInc = (10 * panRight * latInc * zoomScale*zoomScale*zoomScale*zoomScale);
-        // console.log(panDec)
 
           if(panRight > 0.45){
             view.goTo({
               center: [
                 view.center.longitude - panInc,
                 view.center.latitude
-                // Math.min(view.center.latitude + upInc, 90.0)
               ]
             })
             // console.log(latitude, longitude)
@@ -139,24 +121,22 @@ $(document).ready(function(){
           if(tiltUp > 0.45){
             // console.log('tilt up')
             view.goTo({
-              tilt: tilt + 0.8
+              tilt: tilt + 0.95
             })
           }
           else if(tiltUp < 0.4){
             // console.log('tilt down')
             view.goTo({
-              tilt: tilt - 0.8
+              tilt: tilt - 0.95
             })
           }
 
       }// else if frame.hands[0].type == "left"
 
-
     }
 
   });
-  controller.connect(); //----- Leap.Controller
-
+controller.connect(); //----- Leap.Controller
 
 })//--------- $(document).ready()
 
@@ -165,11 +145,10 @@ require([
   "esri/views/SceneView",
   "esri/widgets/Expand",
   "esri/widgets/BasemapGallery",
-  "esri/layers/TileLayer",
   "dojo/dom",
   "dojo/on",
   "dojo/domReady!"
-], function(Map, SceneView,Expand, BasemapGallery, TileLayer){
+], function(Map, SceneView, Expand, BasemapGallery){
 
 map = new Map({
   basemap: "satellite",
@@ -194,25 +173,27 @@ var bgExpand = new Expand({
   expandIconClass: "esri-icon-basemap"
 });
 
-// var tileLayer = new TileLayer({
-// url: ""
-// });
-// console.log(tileLayer)
+// var featureLayer = new FeatureLayer({
+//    url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/Ecological_Footprint/FeatureServer",
+//    popupTemplate: { // autocasts as new PopupTemplate()
+//      title: "Ecological Footprint in {Country}<br>" + "<small><ul><li>Rating: {Rating}</li>" + "<li>Carbon Footprint: {Carbon_Footprint}</li>" + "<li>Ecological Footprint of Consumption: {Ecological_Footprint_of_Consump}</li>" + "<li>Forest Footprint: {Forest_Footprint}</li>" + "<li>Built-up Land: {Built_up_Land}</li>" + "<li>Grazing Footprint: {Grazing_Footprint}</li>" + "<li>Cropland Footprint: {Cropland_Footprint}</li></ul><small>",
+//    }
+//  });
+//
+//  map.add(featureLayer);
 
+  view.then(function() {
+  on(dom.byId("elevationInput"), "change", updateElevation);
 
-view.then(function() {
-on(dom.byId("elevationInput"), "change", updateElevation);
-
-function updateElevation(ev){//Turn ground layers visibility on/off
-  map.ground.layers.forEach(function(layer){
-  layer.visible = ev.target.checked;
-  });
-}
+  function updateElevation(ev){//Turn ground layers visibility on/off
+    map.ground.layers.forEach(function(layer){
+    layer.visible = ev.target.checked;
+    });
+  }
 
 });
-// map.add(tileLayer)
-// Add the widget to the top-right corner of the view
-view.ui.add(bgExpand, "bottom-right");
+  // Add the widget to the top-right corner of the view
+  view.ui.add(bgExpand, "bottom-right");
 });
 
 
@@ -222,7 +203,7 @@ view.ui.add(bgExpand, "bottom-right");
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav mr-auto" id="navRight">
         <li class="nav-item"><%= link_to 'Home  ', pages_home_path %></li>
         <!-- <li class="nav-item"><%= link_to ' Environment', pages_environment_path %></li>
         <li class="nav-item"><%= link_to 'Wildlife', pages_wildlife_path %></li> -->

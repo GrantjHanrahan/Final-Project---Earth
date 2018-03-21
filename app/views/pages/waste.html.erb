@@ -1,10 +1,13 @@
 
 <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
 <script src="https://js.arcgis.com/4.6/"></script>
+<!-- <%= react_component('GreetUser', name: 'Icicle') %>
+becomes -->
+<!-- <div data-react-class="GreetUser" data-react-props="{&quot;name&quot;:&quot;Icicle&quot;}"></div> -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
   <div class="container">
-    <ul class="navbar-nav ml-auto" id="main">
+    <ul class="navbar-nav mr-auto" id="navRight">
     <li class="nav-item"><%= link_to 'Home  ', pages_home_path %></li>
     <!-- <li class="nav-item"><%= link_to ' Wildlife', pages_wildlife_path %></li> -->
 
@@ -60,9 +63,6 @@
       <div class="col-3">
         <h5>In the past 150 years, enough carbon dioxide has been pumped into the atmosphere to raise its levels higher than they have been for hundreds of thousands of years.</h5>
       </div>
-        <!-- <div class="col-2">
-        <h5>The below information was recorded by the Hybrid Coordinate Ocean Model <strong>2014/04/07 - 2014/06/29</strong></h5>
-      </div> -->
 
     </div>
 
@@ -123,11 +123,7 @@
     <div class="container">
       <div class="row">
         <div class="col-1">
-          <!-- <h5>By 2050 an estimated <strong>99%</strong> of seabirds will have ingested plastic</h5>
-          <small>#CleanSeas UN Environment</small>
-          <br>
-          <h5>Every year <strong>8 Million metric tons</strong> of plastic goes into the ocean</h5>
-          <small>Ocean Conservancy</small> -->
+
         </div>
         <div class="col-lg-10" id="seaSlides">
           <%= image_tag 'ocean-plastic.jpg', :class => "seaSlides" %>
@@ -138,8 +134,7 @@
 
         </div>
         <div class="col-1">
-          <!-- <h5>Marine litter harms over <strong>600</strong> marine species</h5><br>
-          <h5><strong>15%</strong> of species affected by ingestion and entanglement from marine litter are endangered</h5> -->
+
       </div>
       </div>
   </div>
@@ -165,7 +160,7 @@
   </section>
 
   <section class="bg-white" id="pollutionNews">
-    <!-- <div id="overlay"> -->
+
 
     <form class="form-inline" id="searchForm">
     <!-- <label class="sr-only" for="inlineFormInput">Search Term:</label> -->
@@ -194,12 +189,8 @@
 
 <script>
  // -------------------------------- Map + Air Quality ------------------
- // var map;
  function initMap(){
-   // map = new google.maps.Map(document.getElementById('four'), {
-   //   center: {lat: -34.397, lng: 150.644},
-   //   zoom: 8
-   // });
+
      var map = new google.maps.Map(document.getElementById('airQualityMap'),{
        center: {lat: 51.505, lng: -0.09},
        // center: new google.maps.LatLng(50, 35),
@@ -220,32 +211,18 @@
 
 // --------------------- ESRI Ocean Temp -----------------------------
 
-// require([
-//   "esri/Map",
-//   "esri/views/MapView",
-//   "dojo/domReady!"
-// ], function(Map, MapView){
-//   var map = new Map({
-//     basemap: "streets"
-//   });
-//   var view = new MapView({
-//     container: "oceanTemp",  // Reference to the scene div created in step 5
-//     map: map,  // Reference to the map object created before the scene
-//     zoom: 4,  // Sets zoom level based on level of detail (LOD)
-//     center: [15, 65]  // Sets center point of view using longitude,latitude
-//   });
-// });
 require([
       "esri/Map",
       "esri/views/MapView",
       "esri/layers/ImageryLayer",
+      "esri/layers/FeatureLayer",
       "esri/layers/support/RasterFunction",
       "esri/layers/support/DimensionalDefinition",
       "esri/layers/support/MosaicRule",
       "esri/core/watchUtils",
       "dojo/domReady!"
     ], function(
-      Map, MapView, ImageryLayer,
+      Map, MapView, ImageryLayer, FeatureLayer,
       RasterFunction, DimensionalDefinition, MosaicRule, watchUtils
     ) {
 
@@ -260,7 +237,7 @@ require([
       var view = new MapView({
         container: "oceanTemp",
         map: map,
-        zoom: 3,
+        zoom: 2,
         center: [-32, 28],
         popup: {
           actions: []
@@ -359,8 +336,17 @@ require([
         }
       });
 
+      var featureLayer = new FeatureLayer({
+         url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/ArcGIS/rest/services/Ecological_Footprint/FeatureServer",
+         popupTemplate: { // autocasts as new PopupTemplate()
+           title: "Ecological Footprint in {Country}<br>" + "<small><ul><li>Rating: {Rating}</li>" + "<li>Carbon Footprint: {Carbon_Footprint}</li>" + "<li>Ecological Footprint of Consumption: {Ecological_Footprint_of_Consump}</li>" + "<li>Forest Footprint: {Forest_Footprint}</li>" + "<li>Built-up Land: {Built_up_Land}</li>" + "<li>Grazing Footprint: {Grazing_Footprint}</li>" + "<li>Cropland Footprint: {Cropland_Footprint}</li></ul><small>",
+         }
+       });
+
       // Add sea temperature layer to the map
       map.add(layer);
+      map.add(featureLayer);
+
   });
 
 
@@ -437,55 +423,7 @@ var oceanGarbage ={
   }
 }
 
-// function initMap2(){
-//
-//   var map = new google.maps.Map(document.getElementById('pgpMap'), {
-//     center: {lat: 14.623, lng: 179},
-//     zoom: 3
-//    });
-//
-//   for (var patch in oceanGarbage){
-//   var marker = new google.maps.Circle({
-//     strokeColor: '#FF0000',
-//     strokeOpacity: 0.8,
-//     strokeWeight: 2,
-//     fillColor: '#FF0000',
-//     fillOpacity: 0.35,
-//     map: map,
-//     center: oceanGarbage[patch].center,
-//     radius: 500000
-//     });
-//   }
-//
-//   var description = "<h4>Convergence Zone</h4>";
-//
-//   var infowindow = new google.maps.InfoWindow({
-//    content: description
-//    });
-//
-//   var convergenceZone = new google.maps.Rectangle({
-//     strokeColor: '#FF0000',
-//     strokeOpacity: 0.8,
-//     strokeWeight: 2,
-//     fillColor: '#FF0000',
-//     fillOpacity: 0.20,
-//     map: map,
-//     bounds: new google.maps.LatLngBounds(
-//     new google.maps.LatLng(41.389, 167.828),
-//     new google.maps.LatLng(35.223, -163.380)
-//     )
-//   });
-//
-//   convergenceZone.addListener('click', function() {
-//    infowindow.open(map, convergenceZone);
-//  });
-//
-//  };
-
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=Rails.application.secrets.google_api_key%>&callback=initMap"async defer> //******** google maps api key *******
 </script>
-
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=API&callback=initMap2"async defer> //******** google maps api key *******
-</script> -->

@@ -20,5 +20,9 @@ h1{
   /* margin-right: 2%; */
   font-size: 1.2em;
   font-weight: 700;
-  padding-right: 2%;
+  /* padding-right: 2%; */
+}
+
+#navRight li{
+  padding-right: 5px !important;
 }
